@@ -103,6 +103,88 @@
 // (function (a, b = 1) {}).length // 1
 // (function (b = 1, a) {}).length // 0
 
-// 5.函数的name属性
-function testFuncName () {};
-console.log(testFuncName.name)
+// // 5.函数的name属性
+// function testFuncName () {};
+// console.log(testFuncName.name)
+
+// // 箭头函数
+// var f = v => v;
+// // 等同于
+// // var f = function (v) {
+// //     return v
+// // }
+// console.log(f(1)) // 1
+
+// // 箭头函数没有参数需要用括号
+// var f = () => 5;
+// console.log(f())
+
+// // 应用
+// // 1.简化回调函数
+// let res = [1, 2, 3].map(x => x * x)
+// console.log(res)
+// let res2 = [2, 1, 3, 0].sort((a,b) => a - b)
+// console.log(res2)
+
+// // 箭头函数的注意点
+// // （1）函数体内的this对象，就是定义时所在的对象，而不是使用时所在的对象。
+
+// // （2）不可以当作构造函数，也就是说，不可以使用new命令，否则会抛出一个错误。
+
+// // （3）不可以使用arguments对象，该对象在函数体内不存在。如果要用，可以用 rest 参数代替。
+
+// // （4）不可以使用yield命令，因此箭头函数不能用作 Generator 函数。
+// function foo() {
+//     setTimeout(() => {
+//       console.log('id:', this.id);
+//     }, 100);
+//   }
+  
+//   var id = 21;
+  
+//   foo.call({ id: 42 }); // 42
+
+
+// function Timer() {
+//     this.s1 = 0;
+//     this.s2 = 0;
+//     // 箭头函数
+//     setInterval(() => this.s1++, 1000);
+//     // 普通函数
+//     setInterval(ubanfunction () {
+//       this.s2++;
+//     }, 1000);
+//   }
+  
+//   var timer = new Timer();
+  
+//   setTimeout(() => console.log('s1: ', timer.s1), 3100); // 3
+//   setTimeout(() => console.log('s2: ', timer.s2), 3100); // 0
+
+// //定义一个对象
+// var obj = {
+//     x:100, //属性x
+//     show(){
+//     //延迟500毫秒，输出x的值
+//         setTimeout(
+//            //匿名函数
+//            function(){console.log(this.x);}, // 指向setTimeOUT的windows.x
+//            500
+//        );
+//     }
+// };
+// obj.show();//打印结果：undefined
+
+// 定义一个对象
+var obj = {
+    x:100,//属性x
+    show(){
+        //延迟500毫秒，输出x的值
+        setTimeout(
+           //不同处：箭头函数
+           function () { console.log(this.x)},
+           500
+        );
+    }
+};
+obj.show();//打印结果：100
