@@ -107,7 +107,7 @@
 // function testFuncName () {};
 // console.log(testFuncName.name)
 
-// // 箭头函数
+// // 6.箭头函数
 // var f = v => v;
 // // 等同于
 // // var f = function (v) {
@@ -188,3 +188,37 @@ var obj = {
     }
 };
 obj.show();//打印结果：100
+
+// 7.call和apply
+// 两者的区别仅在于接受参数的不同。
+// 每个函数都包括两个非继承而来的方法：apply()和call()。
+// 两者用途都是在特定的作用域中调用函数，等于重新设置了函数体内this对象的值。
+// 官方解释，“调用一个对象的一个方法，以另一个对象替换当前对象。”，看了这样的解释，或许让你更摸不着头脑了。
+var Pet = {
+    words : '...',
+    speak : (say) => {
+        console.log(say + ''+ this.words)
+    }
+}
+Pet.speak('Speak'); // 结果：Speak...
+
+var Dog = {
+    words:'Wang'
+}
+
+//将this的指向改变成了Dog
+Pet.speak.call(Dog, 'Speak'); //结果： SpeakWang
+
+function Pet(words){
+    this.words = words;
+    this.speak = function () {
+        console.log( this.words)
+    }
+}
+
+function Dog(words){
+    //Pet.call(this, words); //结果： Wang
+   Pet.apply(this, arguments); //结果： Wang
+}
+var dog = new Dog('Wang');
+dog.speak();
