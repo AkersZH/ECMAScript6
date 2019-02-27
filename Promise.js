@@ -67,10 +67,19 @@
 // const p = Promise.race([p1, p2, p3]);
 // // p1, p2, p3 谁先变就是谁
 
-// 7.Promise.resolve()
-// 将现有对象转换为Promise对象
-// (1)参数是一个Promise实例，原封不动返回实例
-// (2)参数是一个对象（具有then方法的对象）,转为Promise,并且执行then中的方法
+// // 7.Promise.resolve()
+// // 将现有对象转换为Promise对象
+// // (1)参数是一个Promise实例，原封不动返回实例
+// // (2)参数是一个对象（具有then方法的对象）,转为Promise,并且执行then中的方法
+// // (3)参数不带then,返回新的Promise对象，状态为resolved
+// // (4)不带任何参数，直接返回resolved状态的Promise对象
+
+// // Promise.reject()
+// // Promise.reject(reason)方法也会返回一个新的 Promise 实例，该实例的状态为rejected。
+
+// 10.应用
+// (1) 加载图片
+
 
 
 
